@@ -1,0 +1,159 @@
+2025-08-24 21:21:45 - INFO - Enhanced Training Pipeline initialized with time window: 300s
+2025-08-24 21:21:45 - INFO - STARTING ENHANCED TRAINING PIPELINE
+2025-08-24 21:21:45 - INFO - ================================================================================
+2025-08-24 21:21:45 - INFO - ENHANCED NETWORK ANOMALY DETECTION MODEL TRAINING
+2025-08-24 21:21:45 - INFO - ================================================================================
+2025-08-24 21:21:45 - INFO - Version: cic_master
+2025-08-24 21:21:45 - INFO - Processing data: E:\anomaly1\data\conn\conn.log
+2025-08-24 21:21:45 - INFO - Output directory: model_final_lab2
+2025-08-24 21:21:45 - INFO - ============================================================
+2025-08-24 21:21:45 - INFO - STEP 1: LOADING AND CLEANING DATA
+2025-08-24 21:21:45 - INFO - ============================================================
+2025-08-24 21:21:45 - INFO - Loading data from: E:\anomaly1\data\conn\conn.log
+2025-08-24 21:21:45 - INFO - Detected NDJSON (JSON-lines) conn.log format - using pandas.read_json(lines=True)
+2025-08-24 21:21:46 - INFO - Loaded NDJSON conn.log: (3119, 22)
+2025-08-24 21:21:46 - INFO - Successfully loaded data
+2025-08-24 21:21:46 - INFO -   Raw data shape: (3119, 22)
+2025-08-24 21:21:46 - INFO -   Columns: 22
+2025-08-24 21:21:46 - INFO -   Aligned to training schema: (3119, 21) (kept 21 cols)
+2025-08-24 21:21:46 - INFO - Performing enhanced data cleaning...
+2025-08-24 21:21:46 - INFO -   Total data cleaning summary:
+2025-08-24 21:21:46 - INFO -     - Invalid rows removed: 0
+2025-08-24 21:21:46 - INFO -     - Final dataset: 3,119 connections
+2025-08-24 21:21:46 - INFO -     - Total reduction: 0.0%
+2025-08-24 21:21:46 - INFO -   NOTE: DNS traffic filtering is DISABLED - keeping all connection types
+2025-08-24 21:21:46 - INFO -    Timestamp range: 2025-08-20 17:55:25.341310 to 2025-08-20 18:28:34.391336
+2025-08-24 21:21:46 - INFO - Enhanced data cleaning completed
+2025-08-24 21:21:46 - INFO -   Cleaned data shape: (3119, 21)
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - STEP 1.5: RUNNING TRAINING IP PROFILER
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - Training IP Profiler finished. DataFrame augmented with behavioral features.
+2025-08-24 21:21:46 - INFO -   New data shape: (3201, 29)
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - STEP 2: ENHANCED FEATURE ENGINEERING
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - Top 15 services inferred from protocol+port: ['dns', 'https', 'well_known_udp', 'dynamic_udp', 'icmp', 'http', 'ntp']
+2025-08-24 21:21:46 - INFO - Engineering enhanced features...
+2025-08-24 21:21:46 - INFO - ✅ Feature engineering complete.
+2025-08-24 21:21:46 - INFO -    Basic features: 38 columns
+2025-08-24 21:21:46 - INFO -    Stateful features validated: 7/7
+2025-08-24 21:21:46 - INFO -    Z-score group features will be added by GroupFeatureTransformer: 9 features
+2025-08-24 21:21:46 - INFO -    ✅ NO one-hot encoding here - ColumnTransformer will handle it
+2025-08-24 21:21:46 - INFO -    Categorical features ready for ColumnTransformer: orig_port_binned, resp_port_binned, service_binned
+2025-08-24 21:21:46 - INFO -    ✅ beacon_channel_* features now created by GroupFeatureTransformer (not here)
+2025-08-24 21:21:46 - INFO - Enhanced feature engineering completed
+2025-08-24 21:21:46 - INFO -   Final data shape: (3201, 38)
+2025-08-24 21:21:46 - INFO -   Total features: 49
+2025-08-24 21:21:46 - INFO -   Feature categories:
+2025-08-24 21:21:46 - INFO -     - Base features: 34
+2025-08-24 21:21:46 - INFO -     - One-hot encoded: 15
+2025-08-24 21:21:46 - INFO -       * Protocol: 3 (from data)
+2025-08-24 21:21:46 - INFO -     - Connection state: 5 (from data)
+2025-08-24 21:21:46 - INFO -       * Orig port binning: 3 (from data)
+2025-08-24 21:21:46 - INFO -       * Resp port binning: 2 (from data)
+2025-08-24 21:21:46 - INFO -       * Service binning: 2 (from data)
+2025-08-24 21:21:46 - INFO -    Simplified feature set - removed redundant per-connection beaconing indicators
+2025-08-24 21:21:46 - INFO -    Focus on Multi-Group Analysis for robust attack pattern detection
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - STEP 3: CREATING ENHANCED PREPROCESSOR (FINAL CORRECTED VERSION)
+2025-08-24 21:21:46 - INFO - ============================================================
+2025-08-24 21:21:46 - INFO - Performing time-based train/validation split (90% train, 10% val)...
+2025-08-24 21:21:46 - INFO -   Train set: 2,880 samples
+2025-08-24 21:21:46 - INFO -   Validation set: 321 samples
+2025-08-24 21:21:46 - INFO - Fitting preprocessing pipeline on training data...
+2025-08-24 21:21:46 - INFO -   Computing DDoS group statistics...
+2025-08-24 21:21:46 - INFO - 🔧 Using MANUAL baselines for beacon detection...
+2025-08-24 21:21:46 - INFO -   Global environment baselines computed for runtime fallback
+2025-08-24 21:21:46 - INFO -   Per-entity baselines computed for runtime personalization
+2025-08-24 21:21:46 - INFO -   GroupFeatureTransformer fitted successfully:
+2025-08-24 21:21:46 - INFO -      - Beacon patterns: 426 unique flows
+2025-08-24 21:21:46 - INFO -      - Horizontal scan patterns: 22 unique src_ip:port pairs
+2025-08-24 21:21:46 - INFO -      - Vertical scan patterns: 307 unique src_ip:dst_ip pairs
+2025-08-24 21:21:46 - INFO -      - DDoS patterns: 304 unique targets
+2025-08-24 21:21:47 - WARNING - __row_id__ missing from features_df - reconstructing mapping
+2025-08-24 21:21:47 - INFO - Applying fitted pipeline to validation data...
+2025-08-24 21:21:47 - WARNING - __row_id__ missing from features_df - reconstructing mapping
+2025-08-24 21:21:47 - INFO - Enhanced preprocessor with data leakage prevention completed
+2025-08-24 21:21:47 - INFO -   Final Input dimension: 42
+2025-08-24 21:21:47 - INFO -   Training data processed: (2880, 42)
+2025-08-24 21:21:47 - INFO -   Validation data processed: (321, 42)
+2025-08-24 21:21:47 - INFO - ============================================================
+2025-08-24 21:21:47 - INFO - STEP 4: TRAINING STANDARD ISOLATION FOREST
+2025-08-24 21:21:47 - INFO - ============================================================
+2025-08-24 21:21:47 - INFO - Training standard Isolation Forest with contamination=0.005...
+2025-08-24 21:21:47 - INFO -   Configuration: contamination=0.005, max_features=1.0, bootstrap=False
+2025-08-24 21:21:48 - INFO - Standard Isolation Forest training completed successfully.
+2025-08-24 21:21:48 - INFO -   Model trained on 2880 samples with 42 features
+2025-08-24 21:21:48 - INFO -   Decision function thresholds calculated:
+2025-08-24 21:21:48 - INFO -     - 10% threshold: 0.178288
+2025-08-24 21:21:48 - INFO -     - 5% threshold: 0.099182
+2025-08-24 21:21:48 - INFO -     - 1% threshold: 0.021049
+2025-08-24 21:21:48 - INFO -     - Zero threshold: 0.000000
+2025-08-24 21:21:48 - INFO -   Thresholds saved to: model_final_lab2\iso_threshold_cic_master.json
+2025-08-24 21:21:48 - INFO - ============================================================
+2025-08-24 21:21:48 - INFO - STEP 5: TRAINING ENHANCED AUTOENCODER
+2025-08-24 21:21:48 - INFO - ============================================================
+2025-08-24 21:21:48 - INFO - Enhanced Autoencoder architecture: 42 -> 64 -> 32 -> 64 -> 42
+2025-08-24 21:21:48 - INFO - Architecture: Enhanced bottleneck with regularization
+2025-08-24 21:21:48 - INFO - Regularization: L2 regularization + Dropout + BatchNorm
+2025-08-24 21:21:48 - INFO - Optimizer: Adam with exponential decay learning rate
+2025-08-24 21:21:48 - INFO - Loss function: Mean Squared Error
+2025-08-24 21:21:48 - INFO - Dropout rates: 0.2 (encoder/decoder), 0.3 (bottleneck)
+2025-08-24 21:21:48 - INFO - Enhanced Model Architecture Summary:
+2025-08-24 21:21:48 - INFO - Model: "enhanced_autoencoder"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                      ┃ Output Shape             ┃        Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)          │ (None, 42)               │              0 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ encoder_1 (Dense)                 │ (None, 64)               │          2,752 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ dropout (Dropout)                 │ (None, 64)               │              0 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ batch_normalization               │ (None, 64)               │            256 │
+│ (BatchNormalization)              │                          │                │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ bottleneck (Dense)                │ (None, 32)               │          2,080 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ dropout_1 (Dropout)               │ (None, 32)               │              0 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ batch_normalization_1             │ (None, 32)               │            128 │
+│ (BatchNormalization)              │                          │                │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ decoder_1 (Dense)                 │ (None, 64)               │          2,112 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ dropout_2 (Dropout)               │ (None, 64)               │              0 │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ batch_normalization_2             │ (None, 64)               │            256 │
+│ (BatchNormalization)              │                          │                │
+├───────────────────────────────────┼──────────────────────────┼────────────────┤
+│ output (Dense)                    │ (None, 42)               │          2,730 │
+└───────────────────────────────────┴──────────────────────────┴────────────────┘
+ Total params: 10,314 (40.29 KB)
+ Trainable params: 9,994 (39.04 KB)
+ Non-trainable params: 320 (1.25 KB)
+
+2025-08-24 21:21:48 - INFO - Training enhanced autoencoder on 2880 samples...
+2025-08-24 21:21:48 - INFO - Enhanced training parameters:
+2025-08-24 21:21:48 - INFO -   Epochs: 150
+2025-08-24 21:21:48 - INFO -   Batch size: 64
+2025-08-24 21:21:48 - INFO -   Validation split: 0.1
+2025-08-24 21:21:48 - INFO -   Shuffle: False (preserves time series order)
+2025-08-24 21:21:48 - INFO -   Enhanced callbacks: EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+2025-08-24 21:22:03 - INFO - Enhanced Autoencoder training completed successfully
+2025-08-24 21:22:03 - INFO -   Final training loss: 0.435803
+2025-08-24 21:22:03 - INFO -   Final validation loss: 0.328211
+2025-08-24 21:22:03 - INFO -   Final training MAE: 0.329096
+2025-08-24 21:22:03 - INFO -   Final validation MAE: 0.297471
+2025-08-24 21:22:03 - INFO -   Best validation loss: 0.305111
+2025-08-24 21:22:03 - INFO -   Training epochs completed: 110
+2025-08-24 21:22:03 - INFO -   Calculated threshold (99th percentile): 2.282681
+2025-08-24 21:22:03 - INFO -  Successfully reconstructed 42 feature names from preprocessor structure
+2025-08-24 21:22:03 - INFO - Saving models and artifacts to: model_final_lab2
+2025-08-24 21:22:03 - INFO -   OK: Saved complete processing pipeline to model_final_lab2\complete_pipeline_cic_master.joblib
+2025-08-24 21:22:03 - INFO -   OK: Saved Isolation Forest model to model_final_lab2\iso_forest_model_cic_master.joblib
+2025-08-24 21:22:03 - INFO -   OK: Saved Autoencoder model to model_final_lab2\autoencoder_model_cic_master.keras
+2025-08-24 21:22:03 - INFO -   OK: Saved training metadata to model_final_lab2\training_metadata_cic_master.json
+2025-08-24 21:22:03 - INFO - ENHANCED TRAINING PIPELINE COMPLETED SUCCESSFULLY
+2025-08-24 21:22:03 - INFO - Total execution time: 0:00:17.737931

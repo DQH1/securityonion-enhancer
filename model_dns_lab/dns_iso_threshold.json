@@ -1,0 +1,10 @@
+{
+  "threshold_10_percent": 0.26194204061930493,
+  "threshold_5_percent": 0.2220426991353326,
+  "threshold_1_percent": 0.08138568586188755,
+  "threshold_zero": 0.0,
+  "sample_size": 23941,
+  "calculated_on": "2025-08-06T20:24:44.864609",
+  "model_version": "dns_master",
+  "note": "Thresholds calculated on TRAINING data (normal DNS traffic only). Lower scores = more anomalous for Isolation Forest."
+}

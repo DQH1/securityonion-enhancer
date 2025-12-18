@@ -1,0 +1,31 @@
+[server]
+# Tăng performance cho Streamlit
+maxUploadSize = 200
+enableXsrfProtection = false
+enableCORS = false
+
+[browser]
+# Tối ưu browser performance
+gatherUsageStats = false
+serverAddress = "localhost"
+serverPort = 8501
+
+[theme]
+# Tối ưu theme loading
+base = "light"
+
+[client]
+# Tối ưu client performance
+showErrorDetails = false
+toolbarMode = "minimal"
+
+# [runner]
+# Removed invalid/legacy options per Streamlit warnings
+# magicEnabled = false
+# installTracer = false
+# fixMatplotlib = false
+
+[logger]
+# Giảm logging overhead
+level = "warning"
+messageFormat = "%(asctime)s %(message)s"

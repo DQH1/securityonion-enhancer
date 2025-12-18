@@ -1,0 +1,42 @@
+{
+    "project": "DNS Tunneling & Anomaly Detection Pipeline",
+    "version": "3.0_REFACTORED",
+    "training_parameters": {
+        "input_pattern": "./data/final_dns_lab.log",
+        "output_dir": "model_dns_lab",
+        "iso_estimators": 500,
+        "iso_contamination": 0.005,
+        "ae_epochs": 150,
+        "ae_batch_size": 128,
+        "random_state": 42
+    },
+    "features": {
+        "total_count": 18,
+        "list": [
+            "query_length",
+            "query_entropy",
+            "subdomain_count",
+            "numeric_ratio",
+            "ngram_score",
+            "has_base64_pattern",
+            "has_hex_pattern",
+            "has_long_subdomain",
+            "suspicious_length",
+            "char_diversity",
+            "vowel_consonant_ratio",
+            "compressed_pattern",
+            "unusual_tld",
+            "avg_ttl",
+            "min_ttl",
+            "is_qtype_txt",
+            "is_qtype_null",
+            "is_nxdomain"
+        ]
+    },
+    "training_data_summary": {
+        "total_samples": 29927,
+        "train_samples": 23941,
+        "val_samples": 5986,
+        "training_date": "2025-08-06T20:24:45.346180"
+    }
+}

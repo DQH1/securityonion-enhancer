@@ -1,0 +1,10 @@
+{
+  "threshold_10_percent": 0.15828793723991165,
+  "threshold_5_percent": 0.09918211850805973,
+  "threshold_1_percent": 0.021049129364505096,
+  "threshold_zero": 0.0,
+  "sample_size": 2880,
+  "calculated_on": "2025-08-24T21:21:48.641850",
+  "model_version": "cic_master",
+  "note": "Thresholds calculated on TRAINING data (normal traffic only)"
+}

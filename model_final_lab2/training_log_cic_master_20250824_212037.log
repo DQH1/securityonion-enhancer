@@ -1,0 +1,39 @@
+2025-08-24 21:20:37 - INFO - Enhanced Training Pipeline initialized with time window: 300s
+2025-08-24 21:20:37 - INFO - STARTING ENHANCED TRAINING PIPELINE
+2025-08-24 21:20:37 - INFO - ================================================================================
+2025-08-24 21:20:37 - INFO - ENHANCED NETWORK ANOMALY DETECTION MODEL TRAINING
+2025-08-24 21:20:37 - INFO - ================================================================================
+2025-08-24 21:20:37 - INFO - Version: cic_master
+2025-08-24 21:20:37 - INFO - Processing data: E:\anomaly1\data\conn\conn.log
+2025-08-24 21:20:37 - INFO - Output directory: model_final_lab2
+2025-08-24 21:20:37 - INFO - ============================================================
+2025-08-24 21:20:37 - INFO - STEP 1: LOADING AND CLEANING DATA
+2025-08-24 21:20:37 - INFO - ============================================================
+2025-08-24 21:20:37 - INFO - Loading data from: E:\anomaly1\data\conn\conn.log
+2025-08-24 21:20:37 - INFO - Detected NDJSON (JSON-lines) conn.log format - using pandas.read_json(lines=True)
+2025-08-24 21:20:37 - INFO - Loaded NDJSON conn.log: (3119, 22)
+2025-08-24 21:20:37 - INFO - Successfully loaded data
+2025-08-24 21:20:37 - INFO -   Raw data shape: (3119, 22)
+2025-08-24 21:20:37 - INFO -   Columns: 22
+2025-08-24 21:20:37 - INFO -   Aligned to training schema: (3119, 21) (kept 21 cols)
+2025-08-24 21:20:37 - INFO - Performing enhanced data cleaning...
+2025-08-24 21:20:37 - INFO -   Total data cleaning summary:
+2025-08-24 21:20:37 - INFO -     - Invalid rows removed: 0
+2025-08-24 21:20:37 - INFO -     - Final dataset: 3,119 connections
+2025-08-24 21:20:37 - INFO -     - Total reduction: 0.0%
+2025-08-24 21:20:37 - INFO -   NOTE: DNS traffic filtering is DISABLED - keeping all connection types
+2025-08-24 21:20:37 - INFO -    Timestamp range: 2025-08-20 17:55:25.341310 to 2025-08-20 18:28:34.391336
+2025-08-24 21:20:37 - INFO - Enhanced data cleaning completed
+2025-08-24 21:20:37 - INFO -   Cleaned data shape: (3119, 21)
+2025-08-24 21:20:37 - INFO - ============================================================
+2025-08-24 21:20:37 - INFO - STEP 1.5: RUNNING TRAINING IP PROFILER
+2025-08-24 21:20:37 - INFO - ============================================================
+2025-08-24 21:20:37 - CRITICAL - A critical error occurred in the pipeline: UnifiedIPProfiler.__init__() got an unexpected keyword argument 'logger'
+2025-08-24 21:20:37 - CRITICAL - Traceback (most recent call last):
+  File "E:\anomaly1\train_enhanced_models.py", line 1950, in run_complete_pipeline
+    self.run_ip_profiler()
+  File "E:\anomaly1\train_enhanced_models.py", line 386, in run_ip_profiler
+    profiler = UnifiedIPProfiler(time_window_seconds=self.time_window_seconds, logger=self.logger)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: UnifiedIPProfiler.__init__() got an unexpected keyword argument 'logger'
+

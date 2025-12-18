@@ -1,0 +1,33 @@
+2025-08-06 20:24:09,996 - INFO - ======================================================================
+2025-08-06 20:24:09,996 - INFO - Starting DNS Training Pipeline v3.0 (Refactored)
+2025-08-06 20:24:09,996 - INFO - Configuration: {'input_pattern': './data/final_dns_lab.log', 'output_dir': 'model_dns_lab', 'iso_estimators': 500, 'iso_contamination': 0.005, 'ae_epochs': 150, 'ae_batch_size': 128, 'random_state': 42}
+2025-08-06 20:24:09,996 - INFO - ======================================================================
+2025-08-06 20:24:09,996 - INFO - PHASE 1: DATA COLLECTION
+2025-08-06 20:24:09,996 - INFO - Found 1 DNS log files matching pattern: ./data/final_dns_lab.log
+2025-08-06 20:24:10,054 - INFO - Successfully merged data. Total DNS queries: 29,927
+2025-08-06 20:24:10,061 - INFO - 
+PHASE 2: FEATURE ENGINEERING
+2025-08-06 20:24:10,437 - INFO -   Applying pattern detection and converting to DataFrame...
+2025-08-06 20:24:10,871 - INFO - 
+PHASE 3: DATA SPLITTING & PREPROCESSING
+2025-08-06 20:24:10,884 - INFO - Data sorted by timestamp for time-series split.
+2025-08-06 20:24:10,884 - INFO - Train/Validation split: 23,941 / 5,986 samples.
+2025-08-06 20:24:10,899 - INFO - 
+PHASE 4: DUAL-ENGINE TRAINING
+2025-08-06 20:24:10,899 - INFO - Training Engine 1: Isolation Forest...
+2025-08-06 20:24:11,941 - INFO - Isolation Forest training completed.
+2025-08-06 20:24:11,941 - INFO - Training Engine 2: Autoencoder...
+2025-08-06 20:24:44,503 - INFO - Autoencoder training completed.
+2025-08-06 20:24:44,503 - INFO - 
+PHASE 5: SAVING ARTIFACTS
+2025-08-06 20:24:44,634 - INFO - Models and scaler saved in: model_dns_lab
+2025-08-06 20:24:44,634 - INFO - Calculating thresholds from training data...
+2025-08-06 20:24:44,870 - INFO -    - 10% threshold: 0.261942 (10% most anomalous)
+2025-08-06 20:24:44,870 - INFO -    - 5% threshold: 0.222043 (5% most anomalous)
+2025-08-06 20:24:44,870 - INFO -    - 1% threshold: 0.081386 (1% most anomalous)
+2025-08-06 20:24:45,346 - INFO -    - 99th percentile threshold: 0.059429
+2025-08-06 20:24:45,346 - INFO - Pipeline metadata saved: model_dns_lab\dns_pipeline_metadata.json
+2025-08-06 20:24:45,346 - INFO - 
+======================================================================
+2025-08-06 20:24:45,346 - INFO - DNS TRAINING PIPELINE COMPLETED SUCCESSFULLY!
+2025-08-06 20:24:45,346 - INFO - ======================================================================

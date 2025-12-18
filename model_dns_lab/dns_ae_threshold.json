@@ -1,0 +1,7 @@
+{
+  "threshold": 0.05942858505998986,
+  "sample_size": 23941,
+  "calculated_on": "2025-08-06T20:24:45.346180",
+  "percentile": 99,
+  "model_version": "dns_master"
+}
